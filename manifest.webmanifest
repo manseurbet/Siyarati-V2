@@ -1,0 +1,19 @@
+{
+  "name": "SIYARATI",
+  "short_name": "SIYARATI",
+  "description": "Le suivi simple de votre véhicule.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#08111f",
+  "theme_color": "#0b1424",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233f73ff'/%3E%3Cpath d='M14 40h36l3-13a5 5 0 0 0-5-6H16a5 5 0 0 0-5 6l3 13Zm7-19 3-8h16l3 8M20 40v5m24-5v5M15 31h34' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
