@@ -304,9 +304,47 @@
       const customReminderForm = document.querySelector("#custom-reminder-form");
       const customReminderList = document.querySelector("#custom-reminder-list");
 
+      const customReminderCategoryField = document.querySelector("#custom-reminder-category");
+      const customReminderDateField = document.querySelector("#custom-reminder-date");
+      const customReminderDateHint = document.querySelector("#custom-reminder-date-hint");
+
+      customReminderCategoryField?.addEventListener("change", () => {
+        // La date n'est obligatoire que pour l'Assurance ; pour les autres
+        // catégories, une date ou un kilométrage suffit (ou un défaut
+        // automatique pour Vidange/Courroie/Révision/Vignette).
+        const isInsurance = customReminderCategoryField.value === "Assurance";
+        customReminderDateField.required = isInsurance;
+        if (customReminderDateHint) {
+          customReminderDateHint.textContent = isInsurance ? "(obligatoire)" : "(facultatif)";
+        }
+      });
+
       customReminderForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const reminder = Object.fromEntries(new FormData(event.currentTarget).entries());
+
+        if (reminder.category === "Assurance" && !reminder.date) {
+          showToast("La date d’échéance est obligatoire pour l’Assurance.");
+          customReminderDateField?.focus();
+          return;
+        }
+
+        // Si l'utilisateur a saisi lui-même une date ou un kilométrage, on
+        // les utilise tels quels — jamais remplacés par un défaut ni par le
+        // rappel constructeur. Un défaut n'est appliqué que si les deux
+        // champs sont laissés vides pour une catégorie qui en a un.
+        if (!reminder.date && !reminder.mileage) {
+          const rule = customReminderDefaults[reminder.category];
+          if (rule) {
+            const defaultDate = getCustomReminderDefaultDate(rule);
+            const defaultMileage = getCustomReminderDefaultMileage(rule);
+            if (defaultDate) {
+              reminder.date = defaultDate;
+            } else if (defaultMileage !== null) {
+              reminder.mileage = String(defaultMileage);
+            }
+          }
+        }
 
         if (!reminder.date && !reminder.mileage) {
           showToast("Ajoutez une date ou un kilométrage cible.");
