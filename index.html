@@ -3122,7 +3122,7 @@
           </div>
           <div>
             <p class="brand-name">SIYARATI</p>
-            <p class="brand-subtitle">Votre voiture, simplement.</p>
+            <p class="brand-subtitle" dir="rtl" lang="ar">سيارتي : ذكاء و متابعة</p>
           </div>
           <div class="connection-status" id="connection-status" role="status" aria-live="polite">
             <span class="connection-status-dot" aria-hidden="true"></span>
@@ -3134,8 +3134,7 @@
       <section id="home-screen" class="screen" aria-labelledby="page-title">
       <section class="hero" aria-labelledby="page-title">
         <p class="home-eyebrow">VOTRE TABLEAU DE BORD</p>
-        <h1 id="page-title">Votre voiture, simplement.</h1>
-        <p class="intro">Les informations importantes et les prochaines actions, au même endroit.</p>
+        <h1 id="page-title">Votre voiture, simplement · <span dir="rtl" lang="ar">سيارتي : ذكاء و متابعة</span></h1>
       </section>
 
        <section class="vehicle-card" aria-label="Véhicule principal">
@@ -3146,7 +3145,7 @@
            </svg>
          </div>
         <div class="vehicle-copy">
-           <p class="vehicle-label">Véhicule principal</p>
+           <p class="vehicle-label">Véhicule principal · <span dir="rtl" lang="ar">سيارة الأولية</span></p>
           <p class="vehicle-name" id="vehicle-name-display">Aucun véhicule enregistré</p>
           <p class="vehicle-meta" id="vehicle-meta-display">Ajoutez votre véhicule avec le bouton “+ Ajouter”.</p>
           <p class="vehicle-mileage-row" id="vehicle-mileage-row" hidden>
@@ -3172,8 +3171,7 @@
        <section class="home-alerts" aria-labelledby="home-alerts-title">
          <div class="home-alerts-heading">
            <div>
-             <span class="home-section-kicker">SURVEILLANCE</span>
-             <h2 id="home-alerts-title">Alertes <span class="home-alert-count" id="home-alert-count">0</span></h2>
+             <h2 id="home-alerts-title">🚨 Alertes <span dir="rtl" lang="ar">انذارات</span> <span class="home-alert-count" id="home-alert-count">0</span></h2>
            </div>
            <button class="home-alerts-link" type="button" data-screen="alerts" data-requires-vehicle>Tout voir <span aria-hidden="true">›</span></button>
          </div>
@@ -3192,9 +3190,9 @@
 
        <section class="home-priority" aria-label="Action d'urgence">
          <button class="breakdown-quick-action" type="button" data-screen="troubleshooting" data-requires-vehicle>
-           <span class="breakdown-quick-icon" aria-hidden="true">🚨</span>
+           <span class="breakdown-quick-icon" aria-hidden="true">⚠️</span>
            <span class="breakdown-quick-copy">
-             <strong>JE SUIS EN PANNE</strong>
+             <strong>JE SUIS EN PANNE · <span dir="rtl" lang="ar">في حالة عطل</span></strong>
              <small>📍 Localiser ma position</small>
            </span>
            <span class="breakdown-quick-arrow" aria-hidden="true">›</span>
@@ -3220,13 +3218,6 @@
           </svg>
           <span>Accueil</span>
         </button>
-        <button class="bottom-nav-item" type="button" data-bottom-screen="vehicle-info" aria-label="Véhicules">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 17h14l1.2-5.2a2 2 0 0 0-1.95-2.45H5.75A2 2 0 0 0 3.8 11.8L5 17Z" />
-            <path d="M7 9.35 8.3 6h7.4L17 9.35M7 17v2M17 17v2M5 13h14" />
-          </svg>
-          <span>Véhicules</span>
-        </button>
         <button class="bottom-nav-item" type="button" data-bottom-screen="reminders" aria-label="Rappels">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="4" y="5" width="16" height="15" rx="2" />
@@ -3240,6 +3231,13 @@
             <path d="M14 3.5v4h4M9 12h6M9 16h6" />
           </svg>
           <span>Documents</span>
+        </button>
+        <button class="bottom-nav-item" type="button" data-bottom-screen="vehicle-info" aria-label="Véhicules">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 17h14l1.2-5.2a2 2 0 0 0-1.95-2.45H5.75A2 2 0 0 0 3.8 11.8L5 17Z" />
+            <path d="M7 9.35 8.3 6h7.4L17 9.35M7 17v2M17 17v2M5 13h14" />
+          </svg>
+          <span>Véhicules</span>
         </button>
         <button class="bottom-nav-item" type="button" id="bottom-more-button" aria-label="Plus">
           <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
@@ -3261,7 +3259,7 @@
           </button>
           <div>
             <p class="detail-kicker">Mon espace</p>
-            <h1 class="detail-title" id="vehicle-info-title">Véhicule</h1>
+            <h1 class="detail-title" id="vehicle-info-title">Véhicule · <span dir="rtl" lang="ar">السيارة</span></h1>
             <p class="detail-intro">Gérez vos véhicules et choisissez le véhicule principal.</p>
           </div>
         </div>
@@ -3290,7 +3288,7 @@
           </button>
           <div>
             <p class="detail-kicker">Mon espace</p>
-            <h1 class="detail-title" id="documents-title">Documents</h1>
+            <h1 class="detail-title" id="documents-title">Documents · <span dir="rtl" lang="ar">المستندات</span></h1>
             <p class="detail-intro">Téléchargez les documents importants de votre véhicule principal.</p>
           </div>
         </div>
@@ -3372,7 +3370,7 @@
           </button>
           <div>
             <p class="detail-kicker">Documents</p>
-            <h1 class="detail-title" id="expenses-title">Historique</h1>
+            <h1 class="detail-title" id="expenses-title">Historique · <span dir="rtl" lang="ar">السجل</span></h1>
             <p class="detail-intro">Retrouvez les dépenses et les opérations enregistrées pour votre véhicule.</p>
           </div>
         </div>
@@ -3419,7 +3417,7 @@
           </button>
           <div>
             <p class="detail-kicker">Mon véhicule</p>
-            <h1 class="detail-title" id="vehicle-details-title">Infos véhicule</h1>
+            <h1 class="detail-title" id="vehicle-details-title">Infos véhicule · <span dir="rtl" lang="ar">معلومات السيارة</span></h1>
             <p class="detail-intro">Ajoutez les informations principales de votre véhicule.</p>
           </div>
         </div>
@@ -3515,7 +3513,7 @@
           </button>
           <div>
             <p class="detail-kicker">Suivi du véhicule</p>
-            <h1 class="detail-title" id="reminders-title">Rappels</h1>
+            <h1 class="detail-title" id="reminders-title">Rappels · <span dir="rtl" lang="ar">التذكيرات</span></h1>
             <p class="detail-intro">Consultez vos échéances d’entretien et les rappels enregistrés pour votre véhicule.</p>
           </div>
         </div>
@@ -3577,7 +3575,7 @@
           </button>
           <div>
             <p class="detail-kicker">Surveillance</p>
-            <h1 class="detail-title" id="alerts-title">Alertes</h1>
+            <h1 class="detail-title" id="alerts-title">🚨 Alertes · <span dir="rtl" lang="ar">انذارات</span></h1>
           </div>
         </div>
 
@@ -3629,8 +3627,8 @@
             </svg>
           </button>
           <div>
-            <p class="detail-kicker">🚨 JE SUIS EN PANNE</p>
-            <h1 class="detail-title" id="troubleshooting-title">Quel est le problème ?</h1>
+            <p class="detail-kicker">⚠️ JE SUIS EN PANNE · <span dir="rtl" lang="ar">في حالة عطل</span></p>
+            <h1 class="detail-title" id="troubleshooting-title">Quel est le problème ? · <span dir="rtl" lang="ar">ما هي المشكلة؟</span></h1>
             <p class="detail-intro">Choisissez le motif, puis partagez votre position pour recevoir de l’aide.</p>
           </div>
         </div>
@@ -3715,7 +3713,7 @@
           </button>
           <div>
             <p class="detail-kicker">Mon espace</p>
-            <h1 class="detail-title" id="more-title">Plus</h1>
+            <h1 class="detail-title" id="more-title">Plus · <span dir="rtl" lang="ar">المزيد</span></h1>
             <p class="detail-intro">Retrouvez ici les outils complémentaires de SIYARATI.</p>
           </div>
         </div>
@@ -3761,7 +3759,7 @@
           </button>
           <div>
             <p class="detail-kicker">Suivi du véhicule</p>
-            <h1 class="detail-title" id="repair-title">Réparation</h1>
+            <h1 class="detail-title" id="repair-title">Réparation · <span dir="rtl" lang="ar">الإصلاح</span></h1>
             <p class="detail-intro">Ajoutez les interventions réalisées ou à prévoir pour ce véhicule.</p>
           </div>
         </div>
