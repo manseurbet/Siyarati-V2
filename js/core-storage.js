@@ -18,6 +18,18 @@
       const VEHICLE_STORAGE_KEY = "siyarati-vehicle";
       const VEHICLES_STORAGE_KEY = "siyarati-vehicles";
       const PRIMARY_VEHICLE_STORAGE_KEY = "siyarati-primary-vehicle";
+
+      // Compteur d'usage anonyme : incrémente un simple nombre public,
+      // sans aucune donnée personnelle ni identifiable (ni matricule, ni
+      // marque, ni kilométrage). Échec toujours silencieux (hors-ligne,
+      // service indisponible…) pour ne jamais impacter l'app.
+      function pingAnonymousCounter(counterKey) {
+        try {
+          fetch(`https://countapi.mileshilliard.com/api/v1/hit/${counterKey}`, { mode: "cors" }).catch(() => {});
+        } catch {
+          // Ignoré volontairement.
+        }
+      }
       const TOW_STORAGE_KEY = "siyarati-tow-number";
       const CUSTOM_REMINDERS_STORAGE_KEY = "siyarati-custom-reminders";
       const MONTHLY_MILEAGE_ALERT_KEY = "siyarati-monthly-mileage-alert";
@@ -105,6 +117,33 @@
         Toyota: { default: 15000, Électrique: 30000 },
         Volkswagen: { default: 15000, Électrique: 30000 },
       };
+
+      // Intervalles par défaut appliqués automatiquement quand l'utilisateur
+      // choisit une de ces catégories dans un rappel personnalisé SANS
+      // préciser lui-même de date ou de kilométrage cible. S'il saisit une
+      // valeur, elle est toujours utilisée telle quelle à la place.
+      const customReminderDefaults = {
+        "Vidange": { type: "mileage", interval: 10000 },
+        "Courroie de distribution": { type: "mileage", interval: 80000 },
+        "Révision": { type: "mileage", interval: 50000 },
+        "Vignette": { type: "march-next-year" },
+      };
+
+      function getCustomReminderDefaultDate(rule) {
+        if (rule.type !== "march-next-year") {
+          return null;
+        }
+        const nextYear = new Date().getFullYear() + 1;
+        return `${nextYear}-03-01`;
+      }
+
+      function getCustomReminderDefaultMileage(rule) {
+        if (rule.type !== "mileage") {
+          return null;
+        }
+        const current = getCurrentMileage();
+        return current !== null ? current + rule.interval : null;
+      }
 
       function populateVehicleModels(brand, selectedModel = "") {
         const modelField = document.querySelector("#vehicle-model");

@@ -50,3 +50,5 @@
 
       initializeNotificationSupport();
       window.setInterval(() => checkAlerts(), 60000);
+
+      pingAnonymousCounter("siyarati-car-app-opens-v1");
