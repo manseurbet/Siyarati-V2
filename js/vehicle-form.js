@@ -1,13 +1,13 @@
       function formatVehicleRegistration(value) {
-        const digits = String(value || "").replace(/\D/g, "").slice(0, 12);
-        if (digits.length <= 7) return digits;
-        if (digits.length <= 10) return `${digits.slice(0, 7)}-${digits.slice(7)}`;
-        return `${digits.slice(0, 7)}-${digits.slice(7, 10)}-${digits.slice(10, 12)}`;
+        const digits = String(value || "").replace(/\D/g, "").slice(0, 10);
+        if (digits.length <= 5) return digits;
+        if (digits.length <= 8) return `${digits.slice(0, 5)}-${digits.slice(5)}`;
+        return `${digits.slice(0, 5)}-${digits.slice(5, 8)}-${digits.slice(8, 10)}`;
       }
 
       function validateVehicleRegistration(value) {
         const registration = String(value || "").trim();
-        const match = registration.match(/^(\d{7})-([123])(\d{2})-(\d{2})$/);
+        const match = registration.match(/^(\d{5})-([123])(\d{2})-(\d{2})$/);
         if (!match) return false;
         const yearCode = Number(match[3]);
         const currentYearCode = new Date().getFullYear() % 100;
@@ -21,7 +21,7 @@
         event.currentTarget.value = formatVehicleRegistration(event.currentTarget.value);
         event.currentTarget.setCustomValidity(
           event.currentTarget.value && !validateVehicleRegistration(event.currentTarget.value)
-            ? "Matricule invalide : 7 chiffres dans le premier bloc, puis catégorie/année et wilaya."
+            ? "Matricule invalide : 5 chiffres dans le premier bloc, puis catégorie/année et wilaya."
             : "",
         );
       });
@@ -34,7 +34,7 @@
         const form = event.currentTarget;
         const vehicleDetails = Object.fromEntries(new FormData(form).entries());
         if (!validateVehicleRegistration(vehicleDetails["vehicle-registration"])) {
-          showToast("Matricule invalide : 7 chiffres dans le premier bloc, année valide et wilaya de 01 à 68.");
+          showToast("Matricule invalide : 5 chiffres dans le premier bloc, année valide et wilaya de 01 à 68.");
           document.querySelector("#vehicle-registration")?.focus();
           return;
         }
