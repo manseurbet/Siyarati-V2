@@ -1,15 +1,15 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZVSX9FM8T"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4ZVSX9FM8T');
-</script>
 <!doctype html>
 <html lang="fr">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZVSX9FM8T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4ZVSX9FM8T');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b1424" />
@@ -3080,6 +3080,7 @@
         box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
         text-align: left;
         color: inherit;
+        text-decoration: none;
         cursor: pointer;
       }
       .more-tool-icon {
@@ -3470,7 +3471,7 @@
 
             <div class="form-field">
               <label for="vehicle-registration">Matricule</label>
-              <input id="vehicle-registration" name="vehicle-registration" type="text" inputmode="numeric" maxlength="14" placeholder="1234567-126-16" pattern="\d{1,7}-[123]\d{2}-(?:0[1-9]|[1-5][0-9]|6[0-8])" title="Format : xxxxxxx-xxx-xx (7 chiffres pour le premier bloc)." required />
+              <input id="vehicle-registration" name="vehicle-registration" type="text" inputmode="numeric" maxlength="12" placeholder="12345-126-16" pattern="\d{1,5}-[123]\d{2}-(?:0[1-9]|[1-5][0-9]|6[0-8])" title="Format : xxxxx-xxx-xx (5 chiffres pour le premier bloc)." required />
             </div>
 
             <div class="form-field full-width">
@@ -3730,6 +3731,19 @@
             </span>
             <span class="more-tool-arrow" aria-hidden="true">›</span>
           </button>
+          <a class="more-tool-card" href="https://www.facebook.com/share/1LYCyp9N9U/" target="_blank" rel="noopener noreferrer">
+            <span class="more-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 8.5h-2a1.5 1.5 0 0 0-1.5 1.5v2H9v3h2.5V21h3v-6H17l.5-3h-3V10a.5.5 0 0 1 .5-.5h2Z" />
+                <circle cx="12" cy="12" r="9.5" />
+              </svg>
+            </span>
+            <span class="more-tool-copy">
+              <strong>Nous contacter sur Facebook · <span dir="rtl" lang="ar">تواصل معنا على فيسبوك</span></strong>
+              <small>Donnez votre avis, signalez un problème ou suivez les nouveautés.</small>
+            </span>
+            <span class="more-tool-arrow" aria-hidden="true">›</span>
+          </a>
         </div>
       </section>
 
