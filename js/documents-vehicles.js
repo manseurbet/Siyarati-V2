@@ -39,6 +39,10 @@
             ? `${documentFile.name} · ${formatDocumentSize(documentFile.size)}`
             : "Aucun fichier téléchargé";
         });
+        document.querySelectorAll("[data-document-view]").forEach((viewButton) => {
+          const documentFile = documents[viewButton.dataset.documentView];
+          viewButton.hidden = !documentFile;
+        });
         if (guidance) {
           const requiredDocuments = [
             ["carte-grise", "la carte grise"],

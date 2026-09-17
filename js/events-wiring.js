@@ -303,6 +303,40 @@
         window.location.href = `tel:${phoneNumber}`;
       });
 
+      document.querySelector("#documents-screen").addEventListener("click", (event) => {
+        const viewButton = event.target.closest("[data-document-view]");
+        if (!viewButton) {
+          return;
+        }
+
+        const documents = getSavedDocuments();
+        const documentFile = documents[viewButton.dataset.documentView];
+        if (!documentFile?.data) {
+          showToast("Aucun fichier disponible.");
+          return;
+        }
+
+        try {
+          const [header, base64] = documentFile.data.split(",");
+          const mimeMatch = header.match(/data:(.*?);base64/);
+          const mimeType = mimeMatch ? mimeMatch[1] : documentFile.type || "application/octet-stream";
+          const binary = atob(base64);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i += 1) {
+            bytes[i] = binary.charCodeAt(i);
+          }
+          const blob = new Blob([bytes], { type: mimeType });
+          const blobUrl = URL.createObjectURL(blob);
+          const opened = window.open(blobUrl, "_blank");
+          if (!opened) {
+            showToast("Autorisez les pop-ups pour ouvrir le document.");
+          }
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+        } catch {
+          showToast("Impossible d’ouvrir ce fichier.");
+        }
+      });
+
       document.querySelector("#documents-screen").addEventListener("change", (event) => {
         const uploadInput = event.target.closest("[data-document-upload]");
         const file = uploadInput?.files?.[0];
