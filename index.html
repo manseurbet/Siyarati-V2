@@ -1389,6 +1389,37 @@
         pointer-events: none;
       }
 
+      .document-upload-actions {
+        display: flex;
+        flex: 0 0 auto;
+        gap: 6px;
+      }
+
+      .document-view-button {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        border: 1px solid #318a65;
+        border-radius: 8px;
+        color: #318a65;
+        background: #ffffff;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+      }
+
+      .document-view-button:hover,
+      .document-view-button:focus-visible {
+        background: #eaf6f0;
+        outline: none;
+      }
+
+      .document-view-button[hidden] {
+        display: none;
+      }
+
       .documents-upload-note {
         margin: 0;
         color: #8a98a8;
@@ -3182,8 +3213,8 @@
          <button class="breakdown-quick-action" type="button" data-screen="troubleshooting" data-requires-vehicle>
            <span class="breakdown-quick-icon" aria-hidden="true">⚠️</span>
            <span class="breakdown-quick-copy">
-             <strong>JE SUIS EN PANNE · <span dir="rtl" lang="ar">في حالة عطل</span></strong>
-             <small>📍 Localiser ma position</small>
+             <strong>EN CAS DE PANNE CLIQUEZ ICI · <span dir="rtl" lang="ar">في حالة عطل اضغط هنا</span></strong>
+             <small>🔧 Diagnostic et aide dépannage</small>
            </span>
            <span class="breakdown-quick-arrow" aria-hidden="true">›</span>
          </button>
@@ -3289,10 +3320,13 @@
                 <strong>Photo du véhicule</strong>
                 <small data-document-status="photo">Aucun fichier téléchargé</small>
               </div>
-              <label class="document-upload-button">
-                <span>Télécharger</span>
-                <input type="file" accept="image/*" data-document-upload="photo" />
-              </label>
+              <div class="document-upload-actions">
+                <button type="button" class="document-view-button" data-document-view="photo" hidden>Voir</button>
+                <label class="document-upload-button">
+                  <span>Télécharger</span>
+                  <input type="file" accept="image/*" data-document-upload="photo" />
+                </label>
+              </div>
             </article>
 
             <article class="document-upload-card">
@@ -3301,10 +3335,13 @@
                 <strong>Carte grise</strong>
                 <small data-document-status="carte-grise">Aucun fichier téléchargé</small>
               </div>
-              <label class="document-upload-button">
-                <span>Télécharger</span>
-                <input type="file" accept="image/*,.pdf" data-document-upload="carte-grise" />
-              </label>
+              <div class="document-upload-actions">
+                <button type="button" class="document-view-button" data-document-view="carte-grise" hidden>Voir</button>
+                <label class="document-upload-button">
+                  <span>Télécharger</span>
+                  <input type="file" accept="image/*,.pdf" data-document-upload="carte-grise" />
+                </label>
+              </div>
             </article>
 
             <article class="document-upload-card">
@@ -3313,10 +3350,13 @@
                 <strong>Permis de conduire</strong>
                 <small data-document-status="permis">Aucun fichier téléchargé</small>
               </div>
-              <label class="document-upload-button">
-                <span>Télécharger</span>
-                <input type="file" accept="image/*,.pdf" data-document-upload="permis" />
-              </label>
+              <div class="document-upload-actions">
+                <button type="button" class="document-view-button" data-document-view="permis" hidden>Voir</button>
+                <label class="document-upload-button">
+                  <span>Télécharger</span>
+                  <input type="file" accept="image/*,.pdf" data-document-upload="permis" />
+                </label>
+              </div>
             </article>
 
             <article class="document-upload-card">
@@ -3325,10 +3365,13 @@
                 <strong>Vignette</strong>
                 <small data-document-status="vignette">Aucun fichier téléchargé</small>
               </div>
-              <label class="document-upload-button">
-                <span>Télécharger</span>
-                <input type="file" accept="image/*,.pdf" data-document-upload="vignette" />
-              </label>
+              <div class="document-upload-actions">
+                <button type="button" class="document-view-button" data-document-view="vignette" hidden>Voir</button>
+                <label class="document-upload-button">
+                  <span>Télécharger</span>
+                  <input type="file" accept="image/*,.pdf" data-document-upload="vignette" />
+                </label>
+              </div>
             </article>
 
             <article class="document-upload-card">
@@ -3337,10 +3380,13 @@
                 <strong>Assurance</strong>
                 <small data-document-status="assurance">Aucun fichier téléchargé</small>
               </div>
-              <label class="document-upload-button">
-                <span>Télécharger</span>
-                <input type="file" accept="image/*,.pdf" data-document-upload="assurance" />
-              </label>
+              <div class="document-upload-actions">
+                <button type="button" class="document-view-button" data-document-view="assurance" hidden>Voir</button>
+                <label class="document-upload-button">
+                  <span>Télécharger</span>
+                  <input type="file" accept="image/*,.pdf" data-document-upload="assurance" />
+                </label>
+              </div>
             </article>
           </div>
           <p class="documents-upload-note">Formats acceptés : images et PDF.</p>
