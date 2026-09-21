@@ -33,7 +33,8 @@
         event.preventDefault();
         const form = event.currentTarget;
         const vehicleDetails = Object.fromEntries(new FormData(form).entries());
-        if (!validateVehicleRegistration(vehicleDetails["vehicle-registration"])) {
+        const registrationValue = vehicleDetails["vehicle-registration"];
+        if (registrationValue && !validateVehicleRegistration(registrationValue)) {
           showToast("Matricule invalide : 5 chiffres dans le premier bloc, année valide et wilaya de 01 à 68.");
           document.querySelector("#vehicle-registration")?.focus();
           return;
