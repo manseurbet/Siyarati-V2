@@ -1,3 +1,22 @@
+      function renderReminderVehicleContext() {
+        const context = document.querySelector("#reminders-vehicle-context");
+        if (!context) {
+          return;
+        }
+
+        const vehicles = getSavedVehicles();
+        if (!vehicles.length) {
+          context.textContent = "🚗 Aucun véhicule enregistré";
+          return;
+        }
+
+        const vehicle = getSavedVehicle();
+        const registration = vehicle["vehicle-registration"];
+        context.textContent = registration
+          ? `🚗 Véhicule : ${getVehicleDisplayName(vehicle)} · ${registration}`
+          : `🚗 Véhicule : ${getVehicleDisplayName(vehicle)}`;
+      }
+
       function getAlertStatus(hoursRemaining) {
         if (hoursRemaining < 0) {
           return "expired";
