@@ -182,8 +182,21 @@
       const breakdownReasonSelect = document.querySelector("#breakdown-reason-select");
       const towAction = document.querySelector("#tow-action");
       const towStatus = document.querySelector("#tow-status");
+      const garageAction = document.querySelector("#garage-action");
+      const garageStatus = document.querySelector("#garage-status");
       let currentLocationMapUrl = "";
       let selectedBreakdownReason = "";
+
+      // Terme de recherche Google Maps le plus pertinent selon le type de panne choisi.
+      const GARAGE_SEARCH_TERMS = {
+        "Batterie": "électricien auto batterie",
+        "Crevaison": "vulcanisateur pneus",
+        "Panne de carburant": "station essence",
+        "Surchauffe": "garage mécanique auto",
+        "Panne moteur": "garage mécanique auto",
+        "Accident": "garage carrosserie auto",
+        "Je ne sais pas": "garage automobile",
+      };
 
       breakdownReasonSelect?.addEventListener("change", () => {
         selectedBreakdownReason = breakdownReasonSelect.value;
@@ -192,6 +205,16 @@
         locationResult.hidden = true;
         currentLocationMapUrl = "";
         locationShareStatus.textContent = "";
+
+        garageAction.disabled = false;
+        const searchTerm = GARAGE_SEARCH_TERMS[selectedBreakdownReason] || "garage automobile";
+        garageStatus.textContent = `Recherche : ${searchTerm}`;
+      });
+
+      garageAction?.addEventListener("click", () => {
+        const searchTerm = GARAGE_SEARCH_TERMS[selectedBreakdownReason] || "garage automobile";
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchTerm)}`;
+        window.open(mapsUrl, "_blank");
       });
 
       locationAction.addEventListener("click", () => {
