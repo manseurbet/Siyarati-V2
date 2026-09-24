@@ -1,7 +1,7 @@
 {
   "name": "SIYARATI",
   "short_name": "SIYARATI",
-  "description": "Le suivi simple de votre véhicule.",
+  "description": "Gestion, entretien, rappels, documents et assistance pour votre voiture.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
