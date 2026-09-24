@@ -62,6 +62,13 @@
         return statuses.sort((first, second) => priority[second] - priority[first])[0] || "upcoming";
       }
 
+      // Compare deux catégories de rappel sans être sensible à la casse ni
+      // aux espaces superflus, pour que "Vidange", " vidange" ou "VIDANGE"
+      // soient reconnus comme identiques.
+      function normalizeCategory(value) {
+        return (value || "").trim().toLowerCase();
+      }
+
       function getManufacturerMaintenanceEntries() {
         const vehicleId = getPrimaryVehicleId();
         const vehicle = getSavedVehicle();
@@ -165,7 +172,16 @@
           };
         });
 
-        const manufacturerEntries = getManufacturerMaintenanceEntries();
+        // L'alerte constructeur (ex. "Vidange") ne doit s'afficher que si
+        // l'utilisateur n'a pas déjà créé son propre rappel pour la même
+        // catégorie sur ce véhicule : le rappel personnalisé prévaut
+        // toujours sur la valeur par défaut du constructeur.
+        const manufacturerEntries = getManufacturerMaintenanceEntries().filter((entry) => {
+          const hasCustomOverride = customEntries.some(
+            (custom) => normalizeCategory(custom.category) === normalizeCategory(entry.label)
+          );
+          return !hasCustomOverride;
+        });
 
         const actions = getSavedAlertActions();
         return [...fixedEntries, ...customEntries, ...manufacturerEntries]
