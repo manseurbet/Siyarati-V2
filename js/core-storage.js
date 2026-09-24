@@ -188,6 +188,9 @@
           renderHomeAlerts(getReminderEntries());
            renderMonthlyMileageAlert();
         }
+          if (name === "reminders") {
+          renderReminderVehicleContext();
+        }
         if (name === "expenses") {
           renderExpenses();
           renderReports();
