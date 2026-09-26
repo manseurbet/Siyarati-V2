@@ -83,6 +83,7 @@
         renderVehicleList();
         renderDashboardVehicleSelector();
         updateVehicleAvailability();
+        updateHomeEmptyState();
         markMonthlyMileageUpdated();
         renderMonthlyMileageAlert();
         checkAlerts();
