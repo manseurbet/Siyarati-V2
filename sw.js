@@ -1,10 +1,14 @@
 const DATABASE_NAME = "siyarati-notifications";
 const DATABASE_VERSION = 2;
-const APP_CACHE_NAME = "siyarati-app-v3";
+const APP_CACHE_NAME = "siyarati-app-v4";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
+  "./favicon.ico",
+  "./apple-touch-icon.png",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
   "./js/core-storage.js",
   "./js/notifications.js",
   "./js/documents-vehicles.js",
