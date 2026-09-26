@@ -21,6 +21,10 @@
 
       bottomNavItems.forEach((item) => {
         item.addEventListener("click", () => {
+          if (item.classList.contains("is-disabled")) {
+            showToast("Ajoutez d’abord un véhicule pour accéder à cette section.");
+            return;
+          }
           const target = item.dataset.bottomScreen;
           if (target) {
             showScreen(target);
@@ -30,9 +34,25 @@
       });
 
       bottomMoreButton?.addEventListener("click", () => {
+        if (bottomMoreButton.classList.contains("is-disabled")) {
+          showToast("Ajoutez d’abord un véhicule pour accéder à cette section.");
+          return;
+        }
         showScreen("more");
         updateBottomNav("more");
       });
+
+      document.querySelector('#home-empty-state [data-vehicle-action="add"]')?.addEventListener("click", () => {
+        prepareVehicleForm({}, "add-secondary");
+        showScreen("vehicle-details");
+      });
+
+      // Priorité absolue : déterminer l'état "aucun véhicule" avant tout
+      // autre rendu, pour que l'écran d'accueil soit toujours cohérent même
+      // si une fonction plus bas échoue sur un état vierge (première visite).
+      updateVehicleAvailability();
+      updateHomeEmptyState();
+
       renderDocuments();
       renderCustomReminders();
       renderRepairs();
