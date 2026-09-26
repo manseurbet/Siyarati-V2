@@ -41,13 +41,27 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "name": "Siyarati",
+      "alternateName": "سيارتي",
       "url": "https://siyarati-dz.com/",
-      "description": "Application web de gestion, d'entretien, de rappels, de documents et d'assistance pour votre voiture.",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Android, iOS, Windows, macOS, Linux",
-      "inLanguage": ["fr", "ar"]
+      "description": "Application gratuite pour gérer votre voiture en Algérie : rappels d'assurance et de vidange, documents, kilométrage et aide en cas de panne.",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "inLanguage": ["fr", "ar"],
+      "image": "https://siyarati-dz.com/siyarati-og.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "DZD"
+      },
+      "audience": {
+        "@type": "Audience",
+        "geographicArea": {
+          "@type": "Country",
+          "name": "Algérie"
+        }
+      }
     }
     </script>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233f73ff'/%3E%3Cpath d='M14 40h36l3-13a5 5 0 0 0-5-6H16a5 5 0 0 0-5 6l3 13Zm7-19 3-8h16l3 8M20 40v5m24-5v5M15 31h34' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
@@ -2782,21 +2796,91 @@
         margin-bottom: 18px;
       }
 
+      #home-screen .home-empty-state {
+        margin-bottom: 18px;
+        padding: 30px 22px;
+        border: 1px solid #e4e9ef;
+        border-radius: 16px;
+        background: #ffffff;
+        text-align: center;
+      }
+
+      #home-screen .home-empty-state-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 14px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: #536c8f;
+      }
+
+      #home-screen .home-empty-state h2 {
+        margin: 0 0 6px;
+        color: #27384d;
+        font-size: 19px;
+        letter-spacing: -0.01em;
+      }
+
+      #home-screen .home-empty-state p {
+        margin: 0 0 18px;
+        color: #76869a;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      #home-screen .home-empty-state-cta {
+        min-height: 44px;
+        padding: 0 22px;
+        border: 0;
+        border-radius: 10px;
+        background: #536c8f;
+        color: #ffffff;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      #home-screen .home-empty-state-cta:hover,
+      #home-screen .home-empty-state-cta:focus-visible {
+        background: #2b3c52;
+        outline: none;
+      }
+
+      #home-screen .vehicle-card[hidden] {
+        display: none;
+      }
+
+      #home-screen .home-alerts[hidden] {
+        display: none !important;
+      }
+
       #home-screen .hero h1 {
         margin-bottom: 6px;
+      }
+
+      #home-screen .home-subtitle {
+        margin: 0 0 6px;
+        color: #27384d;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
       }
 
       #home-screen .vehicle-card {
         min-height: 0;
         padding: 15px;
         align-items: flex-start;
+        gap: 22px;
       }
 
       #home-screen .vehicle-card-icon {
-        width: 64px;
-        height: 64px;
-        flex: 0 0 64px;
-        border-radius: 14px;
+        width: 132px;
+        height: 132px;
+        flex: 0 0 132px;
+        border-radius: 18px;
         overflow: hidden;
       }
 
@@ -2970,6 +3054,12 @@
           gap: 12px;
         }
 
+        #home-screen .vehicle-card-icon {
+          width: 108px;
+          height: 108px;
+          flex: 0 0 108px;
+        }
+
         .vehicle-copy {
           min-width: 0;
           flex: 1 1 auto;
@@ -3068,6 +3158,11 @@
         font-size: 10px;
         font-weight: 700;
         cursor: pointer;
+      }
+
+      .bottom-nav-item.is-disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
       }
 
       .bottom-nav-item svg {
@@ -3208,8 +3303,21 @@
       <section id="home-screen" class="screen" aria-labelledby="page-title">
       <section class="hero" aria-labelledby="page-title">
         <p class="home-eyebrow">VOTRE TABLEAU DE BORD</p>
-        <h1 id="page-title"><span dir="rtl" lang="ar">سيارتي : ذكاء و متابعة</span></h1>
+        <h1 id="page-title">Siyarati</h1>
+        <h2 class="home-subtitle">Gestion et entretien de votre voiture en Algérie <span dir="rtl" lang="ar">سيارتي : ذكاء و متابعة</span></h2>
                 <p class="home-seo-intro">Rappels, entretien, documents et assistance en cas de panne ou d'urgence.</p>
+      </section>
+
+      <section id="home-empty-state" class="home-empty-state" hidden>
+        <div class="home-empty-state-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14l1.2-5.2a2 2 0 0 0-1.95-2.45H5.75A2 2 0 0 0 3.8 11.8L5 17Z" />
+            <path d="M7 9.35 8.3 6h7.4L17 9.35M7 17v2M17 17v2M5 13h14" />
+          </svg>
+        </div>
+        <h2>Aucun véhicule</h2>
+        <p>Ajoutez votre premier véhicule pour voir vos rappels et votre suivi ici.</p>
+        <button class="home-empty-state-cta" type="button" data-vehicle-action="add">+ Ajouter un véhicule</button>
       </section>
 
        <section class="vehicle-card" aria-label="Véhicule principal">
@@ -3221,8 +3329,6 @@
          </div>
         <div class="vehicle-copy">
            <p class="vehicle-label">Véhicule principal · <span dir="rtl" lang="ar">سيارة الأولية</span></p>
-          <p class="vehicle-name" id="vehicle-name-display">Aucun véhicule enregistré</p>
-          <p class="vehicle-meta" id="vehicle-meta-display">Ajoutez votre véhicule avec le bouton “+ Ajouter”.</p>
           <p class="vehicle-mileage-row" id="vehicle-mileage-row" hidden>
             <span>Kilométrage actuel : <strong id="current-mileage-display">—</strong></span>
             <button type="button" class="vehicle-mileage-edit" id="vehicle-mileage-edit-button">Actualiser</button>
@@ -3264,7 +3370,7 @@
        </section>
 
        <section class="home-priority" aria-label="Action d'urgence">
-         <button class="breakdown-quick-action" type="button" data-screen="troubleshooting" data-requires-vehicle>
+         <button class="breakdown-quick-action" type="button" data-screen="troubleshooting">
            <span class="breakdown-quick-icon" aria-hidden="true">⚠️</span>
            <span class="breakdown-quick-copy">
              <strong>EN CAS DE PANNE CLIQUEZ ICI · <span dir="rtl" lang="ar">في حالة عطل اضغط هنا</span></strong>
@@ -3293,28 +3399,28 @@
           </svg>
           <span>Accueil</span>
         </button>
-        <button class="bottom-nav-item" type="button" data-bottom-screen="reminders" aria-label="Rappels">
+        <button class="bottom-nav-item" type="button" data-bottom-screen="reminders" aria-label="Rappels" data-requires-vehicle>
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="4" y="5" width="16" height="15" rx="2" />
             <path d="M8 3v4M16 3v4M4 9h16M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01" />
           </svg>
           <span>Rappels</span>
         </button>
-        <button class="bottom-nav-item" type="button" data-bottom-screen="documents" aria-label="Documents">
+        <button class="bottom-nav-item" type="button" data-bottom-screen="documents" aria-label="Documents" data-requires-vehicle>
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 3.5h8l4 4V20.5H6z" />
             <path d="M14 3.5v4h4M9 12h6M9 16h6" />
           </svg>
           <span>Documents</span>
         </button>
-        <button class="bottom-nav-item" type="button" data-bottom-screen="vehicle-info" aria-label="Véhicules">
+        <button class="bottom-nav-item" type="button" data-bottom-screen="vehicle-info" aria-label="Véhicules" data-requires-vehicle>
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 17h14l1.2-5.2a2 2 0 0 0-1.95-2.45H5.75A2 2 0 0 0 3.8 11.8L5 17Z" />
             <path d="M7 9.35 8.3 6h7.4L17 9.35M7 17v2M17 17v2M5 13h14" />
           </svg>
           <span>Véhicules</span>
         </button>
-        <button class="bottom-nav-item" type="button" id="bottom-more-button" aria-label="Plus">
+        <button class="bottom-nav-item" type="button" id="bottom-more-button" aria-label="Plus" data-requires-vehicle>
           <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
             <circle cx="5" cy="12" r="1.7" />
             <circle cx="12" cy="12" r="1.7" />
