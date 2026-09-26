@@ -98,13 +98,17 @@
         const registration = vehicle["vehicle-registration"] || "";
         const hasVehicle = Object.keys(vehicle).length > 0;
 
-        nameDisplay.textContent = vehicleName || "Aucun véhicule enregistré";
-        metaDisplay.textContent = registration || "Ajoutez votre véhicule avec le bouton “+ Ajouter”.";
+        if (nameDisplay) nameDisplay.textContent = vehicleName || "Aucun véhicule enregistré";
+        if (metaDisplay) metaDisplay.textContent = registration || "Ajoutez votre véhicule avec le bouton “+ Ajouter”.";
         // Modifier/Supprimer n'ont de sens que s'il existe déjà un véhicule.
         if (editButton) editButton.hidden = !hasVehicle;
         if (deleteButton) deleteButton.hidden = !hasVehicle;
-        if (mileageRow) mileageRow.hidden = !hasVehicle;
-        if (mileageInlineForm && !hasVehicle) mileageInlineForm.hidden = true;
+        // Le kilométrage ne s'actualise plus depuis la carte véhicule : ce
+        // bloc ("Kilométrage actuel · Actualiser") est retiré pour éviter le
+        // doublon avec le rappel périodique (mensuel/15 jours) qui s'en
+        // charge désormais (voir renderMonthlyMileageAlert).
+        if (mileageRow) mileageRow.hidden = true;
+        if (mileageInlineForm) mileageInlineForm.hidden = true;
 
         if (icon) {
           const photo = getSavedDocuments().photo;
@@ -148,7 +152,11 @@
         vehicles.forEach(({ id, data }) => {
           const option = document.createElement("option");
           option.value = id;
-          option.textContent = getVehicleDisplayName(data);
+          // Le matricule distingue deux véhicules de même modèle.
+          const registration = data["vehicle-registration"];
+          option.textContent = registration
+            ? `${getVehicleDisplayName(data)}\u00A0\u00A0\u00A0·\u00A0\u00A0\u00A0${registration}`
+            : getVehicleDisplayName(data);
           option.selected = id === primaryId;
           selector.appendChild(option);
         });
@@ -177,6 +185,19 @@
           card.classList.toggle("is-disabled", !hasPrimaryVehicle);
           card.setAttribute("aria-disabled", String(!hasPrimaryVehicle));
         });
+      }
+
+      // Aucun véhicule enregistré : on montre un état vide simple et unique
+      // (icône, titre, description, un seul bouton) à la place du reste de
+      // l'accueil, plutôt que plusieurs blocs vides côte à côte.
+      function updateHomeEmptyState() {
+        const hasVehicle = Boolean(getPrimaryVehicleId());
+        document.querySelector("#home-empty-state")?.toggleAttribute("hidden", hasVehicle);
+        document.querySelector(".vehicle-card")?.toggleAttribute("hidden", !hasVehicle);
+        document.querySelector(".smart-advice-panel")?.toggleAttribute("hidden", !hasVehicle);
+        document.querySelector(".home-alerts")?.toggleAttribute("hidden", !hasVehicle);
+        // Le bouton d'urgence "en cas de panne" reste accessible même sans
+        // véhicule enregistré : on ne le masque plus ici.
       }
 
       function renderVehicleList() {
@@ -235,6 +256,7 @@
         renderDashboardVehicleSelector();
         renderDocuments();
         updateVehicleAvailability();
+        updateHomeEmptyState();
         updateNotificationControls();
         checkAlerts();
         showToast("Le véhicule principal a été changé.");
@@ -262,6 +284,7 @@
         renderDashboardVehicleSelector();
         renderDocuments();
         updateVehicleAvailability();
+        updateHomeEmptyState();
         updateNotificationControls();
         checkAlerts();
       }
